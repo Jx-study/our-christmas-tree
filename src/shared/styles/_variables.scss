@@ -1,0 +1,126 @@
+// ========== 顏色變數 (Color Variables) ========
+// ========== Christmas Theme Colors ==========
+$christmas-bg-dark: #050b18; // 深藍黑背景
+$christmas-tree-green: #1e5631; // 聖誕樹深綠
+$christmas-tree-green-light: #2d7a4a; // 聖誕樹淺綠
+$christmas-accent-red: #ff6b6b; // 主題紅色
+$christmas-accent-gold: #ffd700; // 金色（星星、裝飾）
+
+// UI Elements
+$christmas-white-glass: rgba(255, 255, 255, 0.1); // 玻璃白（UI 背景）
+$christmas-white-border: rgba(255, 255, 255, 0.2); // 白色邊框
+$christmas-shadow-glow: rgba(239, 68, 68, 0.5); // 紅光陰影
+
+// Year Colors (for placeholders)
+$year-2022-color: #ff6b6b; // 紅色主題
+$year-2023-color: #4ecdc4; // 藍綠色主題
+$year-2024-color: #ffd93d; // 金色主題
+$year-2025-color: #2d7a4a; // 綠色主題
+
+// ========== Original Colors (Backup) ==========
+// Background Colors
+$bg-primary: #f5f5f5; // Page background
+$bg-secondary: #ffffff; // Component background
+$bg-tertiary: #fafafa; // Section background
+
+// Text Colors
+$text-primary: #222222; // Main text
+$text-secondary: #555555; // Secondary text
+$text-tertiary: #888888; // Tertiary text
+$text-white: #ffffff; // White text
+
+// Border & Card
+$border-color: #e5e5e5; // Border color
+$card-bg: #ffffff;
+$card-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+// Status Colors
+$success-color: #26aa99;
+$warning-color: #ffb400;
+$error-color: #ff424f;
+$info-color: #1890ff;
+
+// Gradient
+$gradient-primary: linear-gradient(135deg, #ee4d2d 0%, #ff6b4a 100%);
+$gradient-secondary: linear-gradient(135deg, #ff9800 0%, #ffc107 100%);
+
+// ========== 字體變數 (Typography) ==========
+// Font Sizes
+$font-xs: 0.75rem; // 12px
+$font-sm: 0.875rem; // 14px
+$font-md: 1rem; // 16px
+$font-lg: 1.125rem; // 18px
+$font-xl: 1.25rem; // 20px
+$font-2xl: 1.5rem; // 24px
+$font-3xl: 1.875rem; // 30px
+$font-4xl: 2.25rem; // 36px
+
+// Font Family
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$font-family-zh: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Microsoft JhengHei", "Microsoft YaHei", "PingFang TC", "PingFang SC",
+  sans-serif;
+
+// Christmas Theme Fonts
+$font-title: 'Dancing Script', cursive; // 標題字體
+$font-handwriting: 'Caveat', cursive; // 手寫字體
+$font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; // 內文字體
+
+// ========== 間距變數 (Spacing) ==========
+$spacing-xs: 0.25rem; // 4px
+$spacing-sm: 0.5rem; // 8px
+$spacing-md: 1rem; // 16px
+$spacing-lg: 1.5rem; // 24px
+$spacing-xl: 2rem; // 32px
+$spacing-xxl: 3rem; // 48px
+
+// ========== 斷點 (Breakpoints) ==========
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;
+$desktop-lg: 1400px;
+
+// ========== 陰影 (Shadows) ==========
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+// Aliases for consistency
+$box-shadow-sm: $shadow-sm;
+$box-shadow-md: $shadow-md;
+$box-shadow-lg: $shadow-lg;
+
+// ========== 過渡效果 (Transitions) ==========
+// 時間值（用於 mixin 參數）
+$duration-fast: 0.15s;
+$duration-base: 0.3s;
+$duration-slow: 0.5s;
+
+// 完整 transition 屬性值（直接使用）
+$transition-fast: all 0.15s ease;
+$transition-base: all 0.3s ease;
+$transition-slow: all 0.5s ease;
+
+// ========== 其他 (Others) ==========
+$border-radius-sm: 2px;
+$border-radius-md: 4px;
+$border-radius-lg: 8px;
+$border-radius-xl: 12px;
+
+// Header specific
+$header-height: 64px;
+$header-height-mobile: 56px;
+
+// Z-index layers
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;

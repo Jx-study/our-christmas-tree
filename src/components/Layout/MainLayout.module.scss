@@ -1,0 +1,9 @@
+.mainLayout {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: $christmas-bg-dark;
+  display: flex;
+  flex-direction: column;
+}

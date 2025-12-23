@@ -1,0 +1,306 @@
+// RT-MART SCSS Mixins
+@use "./variables" as *;
+
+// ===========================
+//  Flexbox Utilities
+// ===========================
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex($justify: flex-start, $align: stretch, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// ===========================
+//  Text Utilities
+// ===========================
+// Single line text ellipsis
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Multi-line text ellipsis
+@mixin text-multiline-ellipsis($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ===========================
+//  Responsive Media Queries
+// ===========================
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop-lg {
+  @media (min-width: 1400px) {
+    @content;
+  }
+}
+
+// Max-width media query
+@mixin max-width($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+// Min-width media query
+@mixin min-width($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin belowTablet {
+  @include tablet {
+    @content;
+  }
+  @include mobile {
+    @content;
+  }
+}
+
+// ===========================
+//  Container
+// ===========================
+@mixin container($max-width: 1200px) {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @include tablet {
+    padding: 0 1.5rem;
+  }
+
+  @include desktop {
+    padding: 0 2rem;
+  }
+}
+
+// ===========================
+//  Button Styles
+// ===========================
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $primary-color;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-outline {
+  @include button-base;
+  background: transparent;
+  border: 1px solid $border-color;
+  color: $text-primary;
+
+  &:hover:not(:disabled) {
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+}
+
+// ===========================
+//  Shadows and Borders
+// ===========================
+@mixin box-shadow($shadow: 0 4px 6px rgba(0, 0, 0, 0.1)) {
+  box-shadow: $shadow;
+}
+
+@mixin card-shadow {
+  box-shadow: $card-shadow;
+}
+
+@mixin border-radius($radius: 4px) {
+  border-radius: $radius;
+}
+
+// ===========================
+//  Transitions
+// ===========================
+// 基礎 transition mixin
+@mixin transition($props: all, $duration: 0.3s, $timing: ease) {
+  transition: $props $duration $timing;
+}
+
+// 所有屬性的快速過渡
+@mixin transition-all($duration: 0.3s) {
+  transition: all $duration ease;
+}
+
+// 顏色相關的過渡（文字、背景色）
+@mixin transition-color($duration: 0.15s) {
+  transition: color $duration ease, background-color $duration ease, border-color $duration ease;
+}
+
+// 變形過渡（位移、縮放、旋轉）
+@mixin transition-transform($duration: 0.3s) {
+  transition: transform $duration ease;
+}
+
+// 透明度過渡
+@mixin transition-opacity($duration: 0.3s) {
+  transition: opacity $duration ease;
+}
+
+// 陰影過渡
+@mixin transition-shadow($duration: 0.3s) {
+  transition: box-shadow $duration ease;
+}
+
+// 平滑的多屬性過渡（組合常用屬性）
+@mixin transition-smooth($duration: 0.3s) {
+  transition: all $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Hover 提升效果
+@mixin hover-lift {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// ===========================
+//  Scrollbar
+// ===========================
+@mixin custom-scrollbar($width: 8px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg-tertiary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $text-tertiary;
+    border-radius: 4px;
+
+    &:hover {
+      background: $text-secondary;
+    }
+  }
+}
+
+// ===========================
+//  Position Utilities
+// ===========================
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// ===========================
+//  Animations
+// ===========================
+@mixin fade-in($duration: 0.3s) {
+  animation: fadeIn $duration ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin slide-in-up($duration: 0.3s) {
+  animation: slideInUp $duration ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin slide-in-left($duration: 0.3s) {
+  animation: slideInLeft $duration ease;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

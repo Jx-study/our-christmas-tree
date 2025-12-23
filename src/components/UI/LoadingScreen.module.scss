@@ -1,0 +1,54 @@
+.loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: $christmas-bg-dark;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  text-align: center;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 215, 0, 0.2);
+  border-top-color: $christmas-accent-gold;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto $spacing-lg;
+}
+
+.title {
+  font-family: $font-title;
+  font-size: $font-3xl;
+  color: $christmas-accent-gold;
+  margin: 0 0 $spacing-lg 0;
+}
+
+.progressBar {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, $christmas-accent-red, $christmas-accent-gold);
+  transition: width 300ms ease;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

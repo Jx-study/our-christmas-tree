@@ -1,0 +1,27 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  text-align: center;
+  padding: $spacing-xl $spacing-md;
+  pointer-events: none;
+}
+
+.title {
+  font-family: $font-title;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 700;
+  color: $christmas-accent-gold;
+  text-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
+  margin: 0;
+  margin-bottom: $spacing-sm;
+}
+
+.subtitle {
+  font-family: $font-handwriting;
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}

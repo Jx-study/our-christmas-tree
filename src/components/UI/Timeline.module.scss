@@ -1,0 +1,49 @@
+.timeline {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  @media (max-width: $mobile) {
+    bottom: 1rem;
+  }
+}
+
+.container {
+  display: flex;
+  gap: $spacing-sm;
+  background: $christmas-white-glass;
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  padding: $spacing-sm;
+  border: 1px solid $christmas-white-border;
+
+  @media (max-width: $mobile) {
+    flex-direction: column;
+  }
+}
+
+.yearButton {
+  padding: 10px 20px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+  font-size: $font-md;
+  cursor: pointer;
+  transition: all 300ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  &.active {
+    background: linear-gradient(45deg, $christmas-accent-red, $christmas-accent-gold);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px $christmas-shadow-glow;
+  }
+}
