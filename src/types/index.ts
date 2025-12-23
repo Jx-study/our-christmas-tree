@@ -20,6 +20,7 @@ export interface Photo {
 export interface YearData {
   year: string;                  // "2022" | "2023" | "2024" | "2025"
   photos: Photo[];               // Max 10 photos per year
+  starPhoto?: Photo;             // Optional photo for the star on top
 }
 
 // ========== Complete Memories Data ==========
@@ -32,6 +33,7 @@ export type MemoriesData = YearData[];
  */
 export interface ChristmasTreeProps {
   photos: Photo[];
+  starPhoto?: Photo;
   onPhotoClick: (photo: Photo) => void;
 }
 
@@ -42,6 +44,15 @@ export interface OrnamentProps {
   photo: Photo;
   onClick: () => void;
   isHovered?: boolean;
+}
+
+/**
+ * Props for Star component (top star ornament)
+ */
+export interface StarProps {
+  position: [number, number, number];
+  photo?: Photo;
+  onClick?: () => void;
 }
 
 /**

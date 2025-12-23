@@ -11,7 +11,7 @@ import type { Photo } from '@/types';
  */
 export const preloadImages = async (photos: Photo[]): Promise<void> => {
   const promises = photos.map(photo => {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve, _reject) => {
       const img = new Image();
       img.src = photo.url;
       img.onload = () => resolve();

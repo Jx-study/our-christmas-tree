@@ -1,14 +1,15 @@
 /**
  * Christmas Memory Tree - Photo Memories Data
  *
- * Position Guidelines:
- * - X: -2.0 to 2.0 (left to right)
- * - Y: 2.0 to 6.0 (bottom to top)
- * - Z: -2.0 to 2.0 (front to back)
- * - Min distance between ornaments: 0.6 units
+ * Tree Structure:
+ * - Bottom layer (Y: 2.0-4.0): radius ~1.8, for lower ornaments
+ * - Middle layer (Y: 4.0-5.2): radius ~1.4, for middle ornaments
+ * - Top layer (Y: 5.2-6.3): radius ~1.0, for upper ornaments
+ * - Star: Y = 7.0
  */
 
 import type { MemoriesData } from '@/types';
+import { getOrnamentColor } from '@/utils/ornamentColors';
 
 export const MEMORIES: MemoriesData = [
   {
@@ -19,42 +20,50 @@ export const MEMORIES: MemoriesData = [
         url: "/photos2022/photo1.jpg",
         caption: "我們的第一個聖誕節",
         date: "2022-12-24",
-        position: { x: -1.2, y: 3.5, z: 0.5 },
-        color: "#ff6b6b"
+        position: { x: -1.3, y: 2.5, z: 0.6 },
+        color: getOrnamentColor("2022-1")
       },
       {
         id: "2022-2",
         url: "/photos2022/photo2.jpg",
         caption: "聖誕夜晚餐",
         date: "2022-12-24",
-        position: { x: 1.0, y: 4.0, z: -0.8 },
-        color: "#ff8787"
+        position: { x: 1.2, y: 3.2, z: -0.7 },
+        color: getOrnamentColor("2022-2")
       },
       {
         id: "2022-3",
         url: "/photos2022/photo3.jpg",
         caption: "冬日回憶",
         date: "2022-12-25",
-        position: { x: -0.5, y: 2.8, z: 1.2 },
-        color: "#fa5252"
+        position: { x: -0.8, y: 4.3, z: 1.0 },
+        color: getOrnamentColor("2022-3")
       },
       {
         id: "2022-4",
         url: "/photos2022/photo4.jpg",
         caption: "聖誕快樂",
         date: "2022-12-25",
-        position: { x: 0.8, y: 5.2, z: 0.3 },
-        color: "#ff6b6b"
+        position: { x: 0.9, y: 5.0, z: 0.5 },
+        color: getOrnamentColor("2022-4")
       },
       {
         id: "2022-5",
         url: "/photos2022/photo5.jpg",
         caption: "美好時光",
         date: "2022-12-26",
-        position: { x: -1.5, y: 4.8, z: -0.6 },
-        color: "#c92a2a"
+        position: { x: -0.7, y: 5.8, z: -0.4 },
+        color: getOrnamentColor("2022-5")
       },
-    ]
+    ],
+    starPhoto: {
+      id: "2022-star",
+      url: "/photos2022/photo1.jpg",
+      caption: "2022 年度精選回憶",
+      date: "2022-12-25",
+      position: { x: 0, y: 7.0, z: 0 },
+      color: "#ffd700"
+    }
   },
   {
     year: "2023",
@@ -65,7 +74,7 @@ export const MEMORIES: MemoriesData = [
         caption: "冬日仙境",
         date: "2023-12-25",
         position: { x: -0.8, y: 3.0, z: 1.2 },
-        color: "#4ecdc4"
+        color: getOrnamentColor("2023-1")
       },
       {
         id: "2023-2",
@@ -73,7 +82,7 @@ export const MEMORIES: MemoriesData = [
         caption: "溫暖回憶",
         date: "2023-12-24",
         position: { x: 1.3, y: 3.8, z: -0.4 },
-        color: "#63e6e2"
+        color: getOrnamentColor("2023-2")
       },
       {
         id: "2023-3",
@@ -81,7 +90,7 @@ export const MEMORIES: MemoriesData = [
         caption: "聖誕驚喜",
         date: "2023-12-25",
         position: { x: -0.3, y: 5.5, z: 0.7 },
-        color: "#3bc9db"
+        color: getOrnamentColor("2023-3")
       },
       {
         id: "2023-4",
@@ -89,7 +98,7 @@ export const MEMORIES: MemoriesData = [
         caption: "幸福時刻",
         date: "2023-12-26",
         position: { x: 0.6, y: 2.5, z: -1.0 },
-        color: "#22b8cf"
+        color: getOrnamentColor("2023-4")
       },
       {
         id: "2023-5",
@@ -97,9 +106,17 @@ export const MEMORIES: MemoriesData = [
         caption: "愛的紀念",
         date: "2023-12-27",
         position: { x: -1.4, y: 4.5, z: 0.2 },
-        color: "#15aabf"
+        color: getOrnamentColor("2023-5")
       },
-    ]
+    ],
+    starPhoto: {
+      id: "2023-star",
+      url: "/photos2023/photo1.jpg",
+      caption: "2023 年度精選回憶",
+      date: "2023-12-25",
+      position: { x: 0, y: 7.0, z: 0 },
+      color: "#ffd700"
+    }
   },
   {
     year: "2024",
@@ -110,7 +127,7 @@ export const MEMORIES: MemoriesData = [
         caption: "金色回憶",
         date: "2024-12-24",
         position: { x: -1.0, y: 3.2, z: 0.8 },
-        color: "#ffd93d"
+        color: getOrnamentColor("2024-1")
       },
       {
         id: "2024-2",
@@ -118,7 +135,7 @@ export const MEMORIES: MemoriesData = [
         caption: "璀璨時光",
         date: "2024-12-24",
         position: { x: 0.9, y: 4.5, z: -0.5 },
-        color: "#ffd93d"
+        color: getOrnamentColor("2024-2")
       },
       {
         id: "2024-3",
@@ -126,7 +143,7 @@ export const MEMORIES: MemoriesData = [
         caption: "溫馨聖誕",
         date: "2024-12-25",
         position: { x: -0.6, y: 5.8, z: 0.4 },
-        color: "#fcc419"
+        color: getOrnamentColor("2024-3")
       },
       {
         id: "2024-4",
@@ -134,7 +151,7 @@ export const MEMORIES: MemoriesData = [
         caption: "甜蜜瞬間",
         date: "2024-12-25",
         position: { x: 1.5, y: 2.8, z: 0.9 },
-        color: "#fab005"
+        color: getOrnamentColor("2024-4")
       },
       {
         id: "2024-5",
@@ -142,9 +159,17 @@ export const MEMORIES: MemoriesData = [
         caption: "珍貴紀念",
         date: "2024-12-26",
         position: { x: -1.2, y: 4.2, z: -0.7 },
-        color: "#f59f00"
+        color: getOrnamentColor("2024-5")
       },
-    ]
+    ],
+    starPhoto: {
+      id: "2024-star",
+      url: "/photos2024/photo1.jpg",
+      caption: "2024 年度精選回憶",
+      date: "2024-12-25",
+      position: { x: 0, y: 7.0, z: 0 },
+      color: "#ffd700"
+    }
   },
   {
     year: "2025",
@@ -155,7 +180,7 @@ export const MEMORIES: MemoriesData = [
         caption: "新年新氣象",
         date: "2025-01-01",
         position: { x: -0.9, y: 3.6, z: 1.0 },
-        color: "#2d7a4a"
+        color: getOrnamentColor("2025-1")
       },
       {
         id: "2025-2",
@@ -163,7 +188,7 @@ export const MEMORIES: MemoriesData = [
         caption: "希望之光",
         date: "2025-01-02",
         position: { x: 1.1, y: 4.8, z: -0.3 },
-        color: "#37b24d"
+        color: getOrnamentColor("2025-2")
       },
       {
         id: "2025-3",
@@ -171,7 +196,7 @@ export const MEMORIES: MemoriesData = [
         caption: "綠意盎然",
         date: "2025-01-05",
         position: { x: -0.4, y: 2.6, z: 0.6 },
-        color: "#40c057"
+        color: getOrnamentColor("2025-3")
       },
       {
         id: "2025-4",
@@ -179,7 +204,7 @@ export const MEMORIES: MemoriesData = [
         caption: "春暖花開",
         date: "2025-01-10",
         position: { x: 0.7, y: 5.4, z: 0.8 },
-        color: "#51cf66"
+        color: getOrnamentColor("2025-4")
       },
       {
         id: "2025-5",
@@ -187,9 +212,17 @@ export const MEMORIES: MemoriesData = [
         caption: "未來可期",
         date: "2025-01-15",
         position: { x: -1.6, y: 4.0, z: -0.4 },
-        color: "#2f9e44"
+        color: getOrnamentColor("2025-5")
       },
-    ]
+    ],
+    starPhoto: {
+      id: "2025-star",
+      url: "/photos2025/photo1.jpg",
+      caption: "2025 年度精選回憶",
+      date: "2025-01-01",
+      position: { x: 0, y: 7.0, z: 0 },
+      color: "#ffd700"
+    }
   },
 ];
 

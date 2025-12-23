@@ -25,7 +25,7 @@ import { usePhotoModal } from '@/hooks/usePhotoModal';
 import { preloadImagesWithProgress } from '@/utils/photoLoader';
 
 function App() {
-  const { currentYear, setYear, currentPhotos, allYears } = useMemories();
+  const { currentYear, setYear, currentPhotos, currentStarPhoto, allYears } = useMemories();
   const { selectedPhoto, openPhoto, closePhoto } = usePhotoModal();
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -35,7 +35,10 @@ function App() {
     setIsLoading(true);
     setLoadingProgress(0);
 
-    preloadImagesWithProgress(currentPhotos, (progress) => {
+    // Combine regular photos and star photo for preloading
+    const allPhotos = currentStarPhoto ? [...currentPhotos, currentStarPhoto] : currentPhotos;
+
+    preloadImagesWithProgress(allPhotos, (progress) => {
       setLoadingProgress(progress);
     }).then(() => {
       // Small delay to show 100% progress
@@ -43,7 +46,7 @@ function App() {
         setIsLoading(false);
       }, 300);
     });
-  }, [currentPhotos]);
+  }, [currentPhotos, currentStarPhoto]);
 
   if (isLoading) {
     return <LoadingScreen progress={loadingProgress} />;
@@ -56,12 +59,12 @@ function App() {
 
       {/* 3D Canvas */}
       <Canvas
-        camera={{ position: [0, 3, 8], fov: 75 }}
+        camera={{ position: [0, 5, 8], fov: 75 }}
         shadows
         style={{ position: 'absolute', top: 0, left: 0 }}
       >
         {/* Lighting */}
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={1.0} />
         <pointLight position={[5, 10, 5]} intensity={1.0} castShadow />
         <spotLight
           position={[0, 10, 0]}
@@ -73,13 +76,18 @@ function App() {
 
         {/* 3D Content */}
         <Suspense fallback={null}>
-          <ChristmasTree photos={currentPhotos} onPhotoClick={openPhoto} />
+          <ChristmasTree
+            photos={currentPhotos}
+            starPhoto={currentStarPhoto}
+            onPhotoClick={openPhoto}
+          />
           <Snow />
           <TreeLights />
         </Suspense>
 
         {/* Camera Controls */}
         <OrbitControls
+        target={[0, 3, 0]}
           enableDamping
           dampingFactor={0.05}
           minDistance={5}

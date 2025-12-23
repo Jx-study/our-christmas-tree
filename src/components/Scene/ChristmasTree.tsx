@@ -10,10 +10,10 @@ import type { ChristmasTreeProps } from '@/types';
 import { Ornament } from './Ornament';
 import { Star } from './Star';
 
-export const ChristmasTree = ({ photos, onPhotoClick }: ChristmasTreeProps) => {
+export const ChristmasTree = ({ photos, starPhoto, onPhotoClick }: ChristmasTreeProps) => {
   const treeGroupRef = useRef<THREE.Group>(null);
 
-  useFrame((state, delta) => {
+  useFrame((_state, _delta) => {
     // Optional: Add gentle swaying animation
     if (treeGroupRef.current) {
       // Subtle movement can be added here
@@ -48,7 +48,11 @@ export const ChristmasTree = ({ photos, onPhotoClick }: ChristmasTreeProps) => {
       </mesh>
 
       {/* Star on top */}
-      <Star position={[0, 7.0, 0]} />
+      <Star
+        position={[0, 7.0, 0]}
+        photo={starPhoto}
+        onClick={starPhoto ? () => onPhotoClick(starPhoto) : undefined}
+      />
 
       {/* Photo Ornaments */}
       {photos.map(photo => (

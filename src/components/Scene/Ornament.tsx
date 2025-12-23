@@ -1,20 +1,16 @@
 /**
  * Ornament Component
- * Individual photo ornament (sphere) with texture and interactions
+ * Individual color ornament (sphere) with interactions
  */
 
 import { useState, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import type { OrnamentProps } from '@/types';
 
 export const Ornament = ({ photo, onClick, isHovered = false }: OrnamentProps) => {
   const [hovered, setHovered] = useState(false);
   const meshRef = useRef<THREE.Mesh>(null);
-
-  // Load photo texture
-  const texture = useTexture(photo.url);
 
   // Gentle bobbing animation
   useFrame((state) => {
@@ -52,11 +48,11 @@ export const Ornament = ({ photo, onClick, isHovered = false }: OrnamentProps) =
     >
       <sphereGeometry args={[0.25, 32, 32]} />
       <meshStandardMaterial
-        map={texture}
-        metalness={0.3}
-        roughness={0.4}
+        color={photo.color}
+        metalness={0.6}
+        roughness={0.2}
         emissive={hovered ? photo.color : '#000000'}
-        emissiveIntensity={hovered ? 0.3 : 0}
+        emissiveIntensity={hovered ? 0.5 : 0.1}
       />
     </mesh>
   );
