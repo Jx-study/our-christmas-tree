@@ -4,10 +4,10 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Change to '/our-christmas-tree/' for GitHub Pages
+  base: "/our-christmas-tree/",
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   css: {
@@ -21,19 +21,20 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: "docs",
     sourcemap: false,
-    minify: 'terser',
+    minify: "esbuild",
     rollupOptions: {
       output: {
         manualChunks: {
-          'three': ['three'],
-          'r3f': ['@react-three/fiber', '@react-three/drei'],
-          'vendor': ['react', 'react-dom'],
+          three: ["three"],
+          r3f: ["@react-three/fiber", "@react-three/drei"],
+          vendor: ["react", "react-dom"],
         },
       },
     },
   },
   esbuild: {
-    drop: ['console', 'debugger'],
+    drop: ["console", "debugger"],
   },
-})
+});
