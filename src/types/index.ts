@@ -4,23 +4,23 @@
 
 // ========== Photo Data Structure ==========
 export interface Photo {
-  id: string;                    // Unique identifier (e.g., "2022-1")
-  url: string;                   // Image path (e.g., "/photos/2022/photo1.jpg")
-  caption: string;               // Photo title/description
-  date: string;                  // Date in format "YYYY-MM-DD" or "Dec 24, 2023"
+  id: string;
+  url: string;
+  caption: string;
+  date: string;
   position: {
-    x: number;                   // 3D space coordinate (-2 to 2)
-    y: number;                   // 3D space coordinate (2 to 6)
-    z: number;                   // 3D space coordinate (-2 to 2)
+    x: number;
+    y: number;
+    z: number;
   };
-  color: string;                 // Ornament color (hex color)
+  color: string;
 }
 
 // ========== Year Data Structure ==========
 export interface YearData {
-  year: string;                  // "2022" | "2023" | "2024" | "2025"
-  photos: Photo[];               // Max 10 photos per year
-  starPhoto?: Photo;             // Optional photo for the star on top
+  year: string; // "2022" | "2023" | "2024" | "2025"
+  photos: Photo[];
+  starPhoto?: Photo;
 }
 
 // ========== Complete Memories Data ==========
