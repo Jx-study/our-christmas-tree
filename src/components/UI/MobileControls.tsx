@@ -25,7 +25,7 @@ export const MobileControls = ({
   return (
     <div className={styles.mobileControls}>
       <p className={styles.text}>
-        👆 單指旋轉 • 👌 雙指縮放
+        單指旋轉 • 雙指縮放
       </p>
     </div>
   );

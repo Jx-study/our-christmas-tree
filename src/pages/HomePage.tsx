@@ -1,0 +1,110 @@
+/**
+ * Home Page - Christmas Memory Tree Main View
+ */
+
+import { useState, useEffect, Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+
+// Components
+import { MainLayout } from '@/components/Layout/MainLayout';
+import { Header } from '@/components/UI/Header';
+import { Timeline } from '@/components/UI/Timeline';
+import { Polaroid } from '@/components/UI/Polaroid';
+import { LoadingScreen } from '@/components/UI/LoadingScreen';
+import { MobileControls } from '@/components/UI/MobileControls';
+import { ChristmasTree } from '@/components/Scene/ChristmasTree';
+import { Snow } from '@/components/Scene/Snow';
+import { TreeLights } from '@/components/Scene/TreeLights';
+
+// Hooks
+import { useMemories } from '@/hooks/useMemories';
+import { usePhotoModal } from '@/hooks/usePhotoModal';
+
+// Utils
+import { preloadImagesWithProgress } from '@/utils/photoLoader';
+
+export function HomePage() {
+  const { currentYear, setYear, currentPhotos, currentStarPhoto, allYears } = useMemories();
+  const { selectedPhoto, openPhoto, closePhoto } = usePhotoModal();
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setLoadingProgress(0);
+
+    // Combine regular photos and star photo for preloading
+    const allPhotos = currentStarPhoto ? [...currentPhotos, currentStarPhoto] : currentPhotos;
+
+    preloadImagesWithProgress(allPhotos, (progress) => {
+      setLoadingProgress(progress);
+    }).then(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
+    });
+  }, [currentPhotos, currentStarPhoto]);
+
+  if (isLoading) {
+    return <LoadingScreen progress={loadingProgress} />;
+  }
+
+  return (
+    <MainLayout>
+      <Header />
+      <Canvas
+        camera={{ position: [0, 5, 8], fov: 75 }}
+        shadows
+        style={{ position: 'absolute', top: 0, left: 0 }}
+      >
+        {/* Lighting */}
+        <ambientLight intensity={1.0} />
+        <pointLight position={[5, 10, 5]} intensity={1.2} castShadow />
+        <spotLight
+          position={[0, 10, 0]}
+          angle={Math.PI / 4}
+          penumbra={0.5}
+          intensity={0.8}
+          castShadow
+        />
+
+        {/* 3D Content */}
+        <Suspense fallback={null}>
+          <ChristmasTree
+            photos={currentPhotos}
+            starPhoto={currentStarPhoto}
+            onPhotoClick={openPhoto}
+          />
+          <Snow />
+          <TreeLights />
+        </Suspense>
+
+        {/* Camera Controls */}
+        <OrbitControls
+        target={[0, 3, 0]}
+          enableDamping
+          dampingFactor={0.05}
+          minDistance={5}
+          maxDistance={15}
+          minPolarAngle={Math.PI / 6}
+          maxPolarAngle={Math.PI / 2.2}
+          enablePan={false}
+        />
+      </Canvas>
+
+      {/* UI Overlays */}
+      <Timeline
+        currentYear={currentYear}
+        years={allYears}
+        onChange={setYear}
+      />
+
+      {/* Photo Modal */}
+      <Polaroid photo={selectedPhoto} onClose={closePhoto} />
+
+      {/* Mobile Touch Instructions */}
+      <MobileControls autoHide hideDelay={3000} />
+    </MainLayout>
+  );
+}
